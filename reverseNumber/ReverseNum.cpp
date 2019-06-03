@@ -1,11 +1,3 @@
-//
-//  ReverseNum.hpp
-//  LeetCode
-//
-//  Created by 任晓雨 on 2019/6/1.
-//  Copyright © 2019 任晓雨. All rights reserved.
-//
-
 #ifndef ReverseNum_h
 #define ReverseNum_h
 #include <cstdint>
