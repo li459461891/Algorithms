@@ -32,11 +32,10 @@ namespace SortAnArray {
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
-        return directInsertArray(nums);
+        return straightInsertArray(nums);
     }
 private:
-    vector<int> directInsertArray(vector<int>& nums)
-    {
+    vector<int> straightInsertArray(vector<int>& nums) {
         for (int i = 1; i < nums.size(); ++i)
         {
             int tmp = nums[i];
