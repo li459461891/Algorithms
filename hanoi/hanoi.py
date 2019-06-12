@@ -36,4 +36,3 @@ move 2, y -> z
 move 1, x -> z
 """
 
-def hanoi_non_recursive():
