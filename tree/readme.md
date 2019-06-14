@@ -1,3 +1,4 @@
+Refer:https://www.geeksforgeeks.org/binary-tree-data-structure/#Introduction
 # some formulas and concepts
 ## formulas
 1) The maximum number of nodes at level ‘l’ of a binary tree is pow(2, l-1).
