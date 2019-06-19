@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/AlgorithmsInCpp-UT_LIB.dir/source/Static/ReverseNumber/ReverseNum.cpp.o CMakeFiles/AlgorithmsInCpp-MAIN_UT_LIB.dir/source/Static/testMain.cpp.o  -o AlgorithmsInCpp-MAIN ../lib/libgmock.a ../lib/libgmock_main.a ../lib/libgtest.a ../lib/libgtest_main.a -lpthread 

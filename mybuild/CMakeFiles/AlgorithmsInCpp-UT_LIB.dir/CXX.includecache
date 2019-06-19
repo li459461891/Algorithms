@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../source/Include/ReverseNumber/ReverseNum.hpp
+cstdint
+-
+
+/var/fpworks/githubProj/Algorithms/source/Static/ReverseNumber/ReverseNum.cpp
+ReverseNumber/ReverseNum.hpp
+-
+climits
+-
+
