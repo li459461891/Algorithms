@@ -7,8 +7,8 @@ namespace ReverseNumber
 class Solution
 {
 public:
-    Solution() = default;
-    virtual ~Solution() = delete;
+	Solution() = default;
+	virtual ~Solution() = default;
     int reverse(int);
 };
 

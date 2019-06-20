@@ -13,8 +13,15 @@ find_library(LIBRARY_GMOCK_MAIN gmock_main PATH ${CMAKE_SOURCE_DIR}/lib)
 find_library(LIBRARY_GTEST gtest  PATH ${CMAKE_SOURCE_DIR}/lib)
 find_library(LIBRARY_GTEST_MAIN gtest_main PATH ${CMAKE_SOURCE_DIR}/lib)
 
-add_library(${PROJECT_NAME}-UT_LIB OBJECT
+add_library(${PROJECT_NAME}-SOURCE_LIB OBJECT
+
 	${CMAKE_SOURCE_DIR}/source/Static/ReverseNumber/ReverseNum.cpp
+	${CMAKE_SOURCE_DIR}/source/Static/Tree/BinaryTreeTraversal.cpp
+)
+
+add_library(${PROJECT_NAME}-UT_LIB OBJECT
+	${CMAKE_SOURCE_DIR}/source/Tests/Tree/BinaryTreeTraversalTest.cpp
+	${CMAKE_SOURCE_DIR}/source/Tests/ReverseNumber/ReverseNumberTest.cpp
 )
 
 add_library(${PROJECT_NAME}-MAIN_UT_LIB OBJECT
@@ -27,6 +34,7 @@ MESSAGE (${LIBRARY_GTEST})
 MESSAGE (${LIBRARY_GTEST_MAIN})
 
 add_executable(${PROJECT_NAME}-MAIN
+	$<TARGET_OBJECTS:${PROJECT_NAME}-SOURCE_LIB>
     $<TARGET_OBJECTS:${PROJECT_NAME}-UT_LIB>
     $<TARGET_OBJECTS:${PROJECT_NAME}-MAIN_UT_LIB>
 )
