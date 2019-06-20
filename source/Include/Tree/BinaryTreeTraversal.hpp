@@ -30,10 +30,19 @@ class BinaryTreeTraversal
 public:
     BinaryTreeTraversal():topNode_(nullptr){}
     void setTree(TreeNodePtr tree){topNode_ = tree;}
-    std::vector<int> Inorder();
+    std::vector<int> inorder();
     void visitNode(const TreeNodePtr& node, std::vector<int>& vec);
+
+	void preOrderRecurse(TreeNodePtr);
+	void inOrderRecurse(TreeNodePtr);
+	void postOrderRecurse(TreeNodePtr);
+	const std::vector<int>& getRecurseTraversalResult()const { return  vecForRecurseTraversal_;}
+	void clearRecurseTraversalVec(){ vecForRecurseTraversal_.clear(); }
+	const TreeNodePtr getTopNode(){ return topNode_; }
+	
 private:
     TreeNodePtr topNode_;
+	std::vector<int> vecForRecurseTraversal_;
 };
 }  // namespace tree
 

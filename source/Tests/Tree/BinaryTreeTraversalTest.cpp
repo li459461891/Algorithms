@@ -72,8 +72,7 @@ public:
     }
 };
 
-TEST_F(BinaryTreeTraversalTests, InorderOk)
-{
+
 /*        tree 1                  tree 2            tree 3                tree 4          tree 5
 *
 *             1                       1                 1                    1              1
@@ -81,32 +80,110 @@ TEST_F(BinaryTreeTraversalTests, InorderOk)
 *         2      3                  2                     2                2                  2
 *        / \    / \                /                       \              / \                / \
 *       4   5  6   7              3                         3            3   4              3   4
+*
 *InOrder:{4,2,5,1,6,3,7}        {3,2,1}              {1,2,3}           {3,2,4,1}           {1,3,2,4}
-
+*
+*preOrder:{1,2,4,5,3,6,7}       {1,2,3}              {1,2,3}           {1,2,3,4}           {1,2,3,4}
+*
+*postOrder:{4,5,2,6,7,3,1}      {3,2,1}              {3,2,1}           {3,4,2,1}           {3,4,2,1}
 */
+TEST_F(BinaryTreeTraversalTests, PreOrderOk)
+{
+    std::vector<int> expectedResult = {1,2,4,5,3,6,7};
+    sut_.setTree(createTree1());
+	sut_.clearRecurseTraversalVec();
+	sut_.preOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {1,2,3}; 
+    sut_.setTree(createTree2());
+	sut_.clearRecurseTraversalVec();
+	sut_.preOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {1,2,3};
+    sut_.setTree(createTree3());
+	sut_.clearRecurseTraversalVec();
+	sut_.preOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {1,2,3,4};
+    sut_.setTree(createTree4());
+	sut_.clearRecurseTraversalVec();
+	sut_.preOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {1,2,3,4};
+    sut_.setTree(createTree5());
+	sut_.clearRecurseTraversalVec();
+	sut_.preOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+}
+
+TEST_F(BinaryTreeTraversalTests, InorderOk)
+{
     std::vector<int> expectedResult = {4,2,5,1,6,3,7};
     sut_.setTree(createTree1());
-    auto result = sut_.Inorder();
+    auto result = sut_.inorder();
     EXPECT_EQ(expectedResult, result);
+
+	sut_.clearRecurseTraversalVec();
+	sut_.inOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
 
     expectedResult = {3,2,1};
     sut_.setTree(createTree2());
-    result = sut_.Inorder();
+    result = sut_.inorder();
     EXPECT_EQ(expectedResult, result);
 
     expectedResult = {1,2,3};
     sut_.setTree(createTree3());
-    result = sut_.Inorder();
+    result = sut_.inorder();
     EXPECT_EQ(expectedResult, result);
 
     expectedResult = {3,2,4,1};
     sut_.setTree(createTree4());
-    result = sut_.Inorder();
+    result = sut_.inorder();
     EXPECT_EQ(expectedResult, result);
 
     expectedResult = {1,3,2,4};
     sut_.setTree(createTree5());
-    result = sut_.Inorder();
+    result = sut_.inorder();
     EXPECT_EQ(expectedResult, result);
+}
+
+
+TEST_F(BinaryTreeTraversalTests, PostOrderOk)
+{
+    std::vector<int> expectedResult = {4,5,2,6,7,3,1};
+    sut_.setTree(createTree1());
+	sut_.clearRecurseTraversalVec();
+	sut_.postOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {3,2,1}; 
+    sut_.setTree(createTree2());
+	sut_.clearRecurseTraversalVec();
+	sut_.postOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {3,2,1}; 
+    sut_.setTree(createTree3());
+	sut_.clearRecurseTraversalVec();
+	sut_.postOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {3,4,2,1};
+    sut_.setTree(createTree4());
+	sut_.clearRecurseTraversalVec();
+	sut_.postOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
+    expectedResult = {3,4,2,1};
+    sut_.setTree(createTree5());
+	sut_.clearRecurseTraversalVec();
+	sut_.postOrderRecurse(sut_.getTopNode());
+    EXPECT_EQ(expectedResult, sut_.getRecurseTraversalResult());
+
 }
 }  // namespace tree

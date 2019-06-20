@@ -8,7 +8,7 @@ void BinaryTreeTraversal::visitNode(const TreeNodePtr& node, std::vector<int>& v
     vec.push_back(node->data_);
 }
 
-std::vector<int> BinaryTreeTraversal::Inorder()
+std::vector<int> BinaryTreeTraversal::inorder()
 {
     std::vector<int> visitOrderVec_; // First step, make a clean vector
     // if topNode_ is null
@@ -34,6 +34,32 @@ std::vector<int> BinaryTreeTraversal::Inorder()
     }
     return visitOrderVec_;
 }
+
+
+	void BinaryTreeTraversal::preOrderRecurse(TreeNodePtr nodePtr)
+	{
+		if (not nodePtr) return ;
+		visitNode(nodePtr,  vecForRecurseTraversal_);
+		preOrderRecurse(nodePtr->leftChild_);
+		preOrderRecurse(nodePtr->rightChild_);
+	}
+
+	void BinaryTreeTraversal::inOrderRecurse(TreeNodePtr nodePtr)
+	{
+		if (not nodePtr) return ;
+		inOrderRecurse(nodePtr->leftChild_);
+		visitNode(nodePtr,  vecForRecurseTraversal_);
+		inOrderRecurse(nodePtr->rightChild_);
+	}
+
+	void BinaryTreeTraversal::postOrderRecurse(TreeNodePtr nodePtr)
+	{
+		if (not nodePtr) return ;
+		postOrderRecurse(nodePtr->leftChild_);
+		postOrderRecurse(nodePtr->rightChild_);
+		visitNode(nodePtr,  vecForRecurseTraversal_);
+	}
+
 }  // namespace tree
 
 
