@@ -33,16 +33,20 @@ public:
     std::vector<int> inorder();
     void visitNode(const TreeNodePtr& node, std::vector<int>& vec);
 
-	void preOrderRecurse(TreeNodePtr);
-	void inOrderRecurse(TreeNodePtr);
-	void postOrderRecurse(TreeNodePtr);
-	const std::vector<int>& getRecurseTraversalResult()const { return  vecForRecurseTraversal_;}
-	void clearRecurseTraversalVec(){ vecForRecurseTraversal_.clear(); }
-	const TreeNodePtr getTopNode(){ return topNode_; }
-	
+    void preOrderRecurse(TreeNodePtr);
+    void inOrderRecurse(TreeNodePtr);
+    void postOrderRecurse(TreeNodePtr);
+    const std::vector<int>& getRecurseTraversalResult()const { return  vecForRecurseTraversal_;}
+    void clearRecurseTraversalVec(){ vecForRecurseTraversal_.clear(); }
+    const TreeNodePtr getTopNode(){ return topNode_; }
+    std::vector<std::vector<int>> biTreeBfsTraversal();
+    std::vector<std::vector<int>> biTreeBfsTraversalRecurse();
+
 private:
+    void biTreeBfsRecurseInner(TreeNodePtr, int);
     TreeNodePtr topNode_;
-	std::vector<int> vecForRecurseTraversal_;
+    std::vector<int> vecForRecurseTraversal_;
+    std::vector<std::vector<int>> vecForBfs_;
 };
 }  // namespace tree
 

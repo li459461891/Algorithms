@@ -1,4 +1,5 @@
 #include <Tree/BinaryTreeTraversal.hpp>
+#include <deque>
 
 namespace tree
 {
@@ -35,30 +36,71 @@ std::vector<int> BinaryTreeTraversal::inorder()
     return visitOrderVec_;
 }
 
+    void BinaryTreeTraversal::preOrderRecurse(TreeNodePtr nodePtr)
+    {
+        if (not nodePtr) return ;
+        visitNode(nodePtr,  vecForRecurseTraversal_);
+        preOrderRecurse(nodePtr->leftChild_);
+        preOrderRecurse(nodePtr->rightChild_);
+    }
 
-	void BinaryTreeTraversal::preOrderRecurse(TreeNodePtr nodePtr)
-	{
-		if (not nodePtr) return ;
-		visitNode(nodePtr,  vecForRecurseTraversal_);
-		preOrderRecurse(nodePtr->leftChild_);
-		preOrderRecurse(nodePtr->rightChild_);
-	}
+    void BinaryTreeTraversal::inOrderRecurse(TreeNodePtr nodePtr)
+    {
+        if (not nodePtr) return ;
+        inOrderRecurse(nodePtr->leftChild_);
+        visitNode(nodePtr,  vecForRecurseTraversal_);
+        inOrderRecurse(nodePtr->rightChild_);
+    }
 
-	void BinaryTreeTraversal::inOrderRecurse(TreeNodePtr nodePtr)
-	{
-		if (not nodePtr) return ;
-		inOrderRecurse(nodePtr->leftChild_);
-		visitNode(nodePtr,  vecForRecurseTraversal_);
-		inOrderRecurse(nodePtr->rightChild_);
-	}
+    void BinaryTreeTraversal::postOrderRecurse(TreeNodePtr nodePtr)
+    {
+        if (not nodePtr) return ;
+        postOrderRecurse(nodePtr->leftChild_);
+        postOrderRecurse(nodePtr->rightChild_);
+        visitNode(nodePtr,  vecForRecurseTraversal_);
+    }
 
-	void BinaryTreeTraversal::postOrderRecurse(TreeNodePtr nodePtr)
-	{
-		if (not nodePtr) return ;
-		postOrderRecurse(nodePtr->leftChild_);
-		postOrderRecurse(nodePtr->rightChild_);
-		visitNode(nodePtr,  vecForRecurseTraversal_);
-	}
+    std::vector<std::vector<int>> BinaryTreeTraversal::biTreeBfsTraversalRecurse()
+    {
+        vecForBfs_.clear();
+        biTreeBfsRecurseInner(topNode_, 0);
+        return vecForBfs_;
+    }
+
+    void BinaryTreeTraversal::biTreeBfsRecurseInner(TreeNodePtr node, int level)
+    {
+        if (not node) return ;
+        if (level >= vecForBfs_.size()) vecForBfs_.push_back(std::vector<int>());
+        vecForBfs_[level].push_back(node->data_);
+
+        if (node->leftChild_) biTreeBfsRecurseInner(node->leftChild_, level+1);
+        if (node->rightChild_) biTreeBfsRecurseInner(node->rightChild_, level+1);
+    }
+   
+    std::vector<std::vector<int>> BinaryTreeTraversal::biTreeBfsTraversal()
+    {
+        vecForBfs_.clear();
+        // non recursive
+        std::deque<TreeNodePtr> myDeque;
+        myDeque.push_back(topNode_);
+
+        while (not myDeque.empty())
+        {
+            std::vector<int> perVec;
+            auto size = myDeque.size();
+            for(auto i = 0 ; i < size ; i++)
+            {
+                auto perNode = myDeque.front();
+                myDeque.pop_front();
+                perVec.push_back(perNode->data_);
+                if (perNode->leftChild_) myDeque.push_back(perNode->leftChild_);
+                if (perNode->rightChild_) myDeque.push_back(perNode->rightChild_);
+            }
+           vecForBfs_.push_back(perVec); 
+        }
+
+        return vecForBfs_;
+    }
 
 }  // namespace tree
 
