@@ -1,0 +1,6 @@
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/rebuild_cache.dir
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/edit_cache.dir
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/AlgorithmsInCpp-MAIN.dir
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/AlgorithmsInCpp-MAIN_UT_LIB.dir
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/AlgorithmsInCpp-SOURCE_LIB.dir
+/var/fpworks/githubProj/Algorithms/mybuild/CMakeFiles/AlgorithmsInCpp-UT_LIB.dir
