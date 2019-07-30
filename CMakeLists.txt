@@ -19,9 +19,13 @@ add_library(${PROJECT_NAME}-SOURCE_LIB OBJECT
 	${CMAKE_SOURCE_DIR}/source/Static/Tree/BinaryTreeTraversal.cpp
 )
 
+file(GLOB native_tests
+    ${CMAKE_SOURCE_DIR}/source/Tests/Algos/*.cpp)
+
 add_library(${PROJECT_NAME}-UT_LIB OBJECT
-	${CMAKE_SOURCE_DIR}/source/Tests/Tree/BinaryTreeTraversalTest.cpp
-	${CMAKE_SOURCE_DIR}/source/Tests/ReverseNumber/ReverseNumberTest.cpp
+    #	${CMAKE_SOURCE_DIR}/source/Tests/Tree/BinaryTreeTraversalTest.cpp
+    #   ${CMAKE_SOURCE_DIR}/source/Tests/ReverseNumber/ReverseNumberTest.cpp
+    ${native_tests}
 )
 
 add_library(${PROJECT_NAME}-MAIN_UT_LIB OBJECT
