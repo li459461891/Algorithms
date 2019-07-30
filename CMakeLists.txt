@@ -43,10 +43,16 @@ add_executable(${PROJECT_NAME}-MAIN
     $<TARGET_OBJECTS:${PROJECT_NAME}-MAIN_UT_LIB>
 )
 
+# The following two linse seems does not work.
+# set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+# set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
+
+
 target_link_libraries(${PROJECT_NAME}-MAIN
     ${LIB_GMOCK}
     ${LIBRARY_GMOCK_MAIN}
     ${LIBRARY_GTEST}
     ${LIBRARY_GTEST_MAIN}
+#    -fsanitize=address  # This line seems does not work
     pthread
 )

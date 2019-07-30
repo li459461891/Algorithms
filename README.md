@@ -27,7 +27,8 @@ under Algorithms path
 ```
 mkdir mybuild
 cd mybuild
-cmake ..
+cmake .. 
+# Or use cmake ../ -DCMAKE_CXX_FLAGS="-fsanitize=address" -DCMAKE_BUILD_TYPE=Debug if do some memory check.
 make
 ```
 

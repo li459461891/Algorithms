@@ -63,22 +63,38 @@ public:
         auto search = table_.find(key);
         if (search == table_.end())
         {
-             std::cout << -1 << std::endl;
             return -1;
         }
         auto ret = search->second->second;
-        moveListElemToFirst(key, search->second);
-        std::cout << ret << std::endl;
+        // the following 4 lines is to move List Elem To First
+        listDatas_.push_front(*(search->second));
+        listDatas_.erase(search->second);
+        table_.erase(key);
+        table_[key] = listDatas_.begin();
         return ret;
     }
 
+    // step 1, check if there is key in the table_, if find, remove the old data.
+    // step 2, check if the table_ reaches capacity, if reaches, pop the back data.
+    // step 3, insert the new data.
     void put(int key, int value)
     {
+        auto search = table_.find(key);
+        //
+        if (search != table_.end())
+        {
+            table_.erase(key);
+            listDatas_.erase(search->second);
+        }
         if (capacity_ <= table_.size())
         {
-            removeLastElemFromList();
+            // remove Last Elem From List
+            table_.erase(listDatas_.back().first);
+            listDatas_.pop_back();
         }
-        insertListElemToFirst(key, value);
+        // insert List Elem To First
+        listDatas_.push_front(myPair(key , value));
+        table_[key] = listDatas_.begin();
     }
 
 private:
@@ -88,24 +104,6 @@ private:
     CacheTable table_;
     myList listDatas_;
     int capacity_ ;
-
-    void insertListElemToFirst(const int& key, const int& data)
-    {
-        listDatas_.push_front(myPair(key, data));
-        table_[key] = listDatas_.begin();
-    }
-    void moveListElemToFirst(const int& key, const myList::iterator& it)
-    {
-        listDatas_.push_front(*it);
-        listDatas_.erase(it);
-        table_.erase(key);
-        table_[key] = listDatas_.begin();
-    }
-     void removeLastElemFromList()
-    {
-        table_.erase(listDatas_.back().first);
-        listDatas_.pop_back();
-    }
 }; // class LRUCache
 }  // namespace  LRUCache
 /**
