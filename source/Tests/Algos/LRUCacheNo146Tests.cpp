@@ -51,12 +51,4 @@ TEST_F(LRUCacheNo146Tests, TestCases2)
     EXPECT_EQ(2, sut_.get(1));
     EXPECT_EQ(6, sut_.get(2));
 }
-
-TEST_F(LRUCacheNo146Tests, fsanitizeCrash)
-{
-    int* test = new int{2};
-    delete test;
-    std::cout << *test << std::endl;  // this heap memory access is invalied
-}
-
 }  // namespace LRUCache

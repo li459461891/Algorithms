@@ -83,8 +83,8 @@ public:
         //
         if (search != table_.end())
         {
-            table_.erase(key);
             listDatas_.erase(search->second);
+            table_.erase(key);
         }
         if (capacity_ <= table_.size())
         {
