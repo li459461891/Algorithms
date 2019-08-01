@@ -25,11 +25,14 @@ public:
         deque<int> negativeDeque;
         vector<int> resultVec;
         int index = 0;
+        // step1, put the negative numbers into the deque
         for ( ; index < A.size(); ++index)
         {
             if (A[index] < 0) { negativeDeque.emplace_front(A[index]); }
             else { break; }
         }
+        // step2, merge the negative numbers and positive numbers to resultVec.
+        // For this step, refer to the merge sort.
         while(!negativeDeque.empty() && index < A.size())
         {
             if (-1 * negativeDeque.front() <= A[index])
@@ -43,6 +46,7 @@ public:
                 ++index;
             }
         }
+        // the if ... else ... is to add the remain elems(already sorted) to the resultVec
         if (index == A.size())
         {
             while(!negativeDeque.empty())
@@ -55,6 +59,7 @@ public:
         {
             for (;index < A.size() ; ++index) { resultVec.emplace_back(A[index] * A[index]); }
         }
+        // The the return values are sorted and squuared.
         return resultVec;
     }
 };
