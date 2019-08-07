@@ -211,6 +211,7 @@ TEST_F(BinaryTreeTraversalTests, BfsOrderOk)
 
     expectedResult = {{1},{2},{3,4}};
     sut_.setTree(createTree5());
+    
     EXPECT_EQ(expectedResult, sut_.biTreeBfsTraversalRecurse());
     EXPECT_EQ(expectedResult, sut_.biTreeBfsTraversal());
 }

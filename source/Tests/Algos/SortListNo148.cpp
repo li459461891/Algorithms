@@ -163,7 +163,6 @@ public:
     }
 };
 
-
 TEST_F(SortListNo148Tests, TestCases)
 {
     // empty list
