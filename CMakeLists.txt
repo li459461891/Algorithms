@@ -20,7 +20,9 @@ add_library(${PROJECT_NAME}-SOURCE_LIB OBJECT
 )
 
 file(GLOB native_tests
-    ${CMAKE_SOURCE_DIR}/source/Tests/Algos/*.cpp)
+    ${CMAKE_SOURCE_DIR}/source/Tests/Algos/*.cpp
+    ${CMAKE_SOURCE_DIR}/source/Tests/DesignPattern/*.cpp
+)
 
 add_library(${PROJECT_NAME}-UT_LIB OBJECT
     #	${CMAKE_SOURCE_DIR}/source/Tests/Tree/BinaryTreeTraversalTest.cpp

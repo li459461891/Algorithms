@@ -31,16 +31,84 @@ class Solution {
 public:
     ListNode* sortList(ListNode* head)
     {
+/* merge sort strat  */
         // Empty list or the list only contains one element.
-        if (!head || !head->next)
-        {
-            return head;
-        }
-        int len = getLen(head);
-        return mergeList(head, len);
+//        if (!head || !head->next)
+//        {
+//            return head;
+//        }
+//        int len = getLen(head);
+//        return mergeList(head, len);
+/* merge sort end */
+
+
+/* quick sort strat  */
+        return quickSortInterface(head);
+/* quick sort end */
     }
 
 private:
+    ListNode* quickSortInterface(ListNode* head)
+    {
+        ListNode* tail = getTail(head);
+        quickSort(head, tail);
+        return head;
+    }
+
+    ListNode* getTail(ListNode* head)
+    {
+        if(head == NULL) return head;
+
+        ListNode* retPtr = head;
+        while(retPtr->next != NULL)
+        {
+            retPtr = retPtr->next;
+        }
+        return retPtr;
+    }
+
+    void quickSort(ListNode* head, ListNode* tail)
+    {
+        if (head == tail) return ;
+        ListNode* mid = partation(head, tail);
+        quickSort(head, mid);
+        quickSort(mid->next, tail);
+    }
+
+    ListNode* partation(ListNode* head, ListNode* tail)
+    {
+        if (head == tail || head == NULL) return head;
+        ListNode* left = head;
+        ListNode* right = head;
+        ListNode* prev = NULL;
+        int midVal = tail->val;
+        while(right != tail)
+        {
+            if (midVal >= right->val)
+            {
+                swap(left, right);
+                prev = left;
+                left = left->next;
+            }
+            right = right->next;
+        }
+        swap(left, tail);
+        if (left == tail)
+        {
+            left = prev;
+        }
+        return left;
+    }
+
+    void swap(ListNode* node1, ListNode* node2)
+    {
+        if( node1->val == node2->val) return ; 
+        auto temp = node1->val;
+        node1->val = node2->val;
+        node2->val = temp;
+    }
+
+
     int getLen(ListNode* head)
     {
         int index = 0;
